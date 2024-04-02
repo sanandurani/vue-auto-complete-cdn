@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Autocomplete with Tailwind CSS</title>
+  <!-- Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app" class="p-4">
+    <div id="app" class="p-4">
+      <t-autocomplete 
+        :items="options" 
+        v-model="selectedItem" 
+        placeholder="Type to search" 
+        clearable 
+        item-text="name" 
+        item-value="id"
+        maxHeight="auto"
+        :loading="loading" 
+        @search="onSearch"
+      ></t-autocomplete>
+    </div>
+    
+  </div>
+
+  <script src="TAutocomplete.js"></script>
+  
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        onSearch() {
+          console.log('Search triggered');
+        }
+      },
+      data: {
+        options: [{
+            id: 1,
+            name: 'Apple'
+          },
+          {
+            id: 2,
+            name: 'Banana'
+          },
+          {
+            id: 3,
+            name: 'Cherry'
+          },
+          {
+            id: 4,
+            name: 'Date'
+          },
+          {
+            id: 5,
+            name: 'Elderberry'
+          },
+        ],
+        selectedItem: '',
+        isItemSelected: false,
+        loading: false
+      },
+    });
+  </script>
+
+</body>
+
+</html>
