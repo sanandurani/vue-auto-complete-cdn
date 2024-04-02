@@ -30,7 +30,7 @@ Vue.component('t-autocomplete', {
     },
     maxHeight: {
       type: [Number, String],
-      default: "auto"
+      default: 300
     },
     appendIcon: String,
     appendOuterIcon: String,
@@ -207,7 +207,7 @@ Vue.component('t-autocomplete', {
     }
   },
   template: `
-  <div class="relative">
+  <div class="overflow-hidden rounded-lg bg-white shadow-md relative w-full max-w-lg transform mx-4 transition-all opacity-100 scale-100">
     <input 
         v-model="searchText" 
         @focus="onFocus" 
@@ -216,16 +216,16 @@ Vue.component('t-autocomplete', {
         @keydown="onKeyDown"
         @mousedown="onMouseDown"
         @mouseup="onMouseUp"
-        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+        class="block w-full appearance-none bg-transparent py-4 pl-4 pr-12 text-base text-slate-900 placeholder:text-slate-600 focus:outline-none sm:text-sm sm:leading-6"
         :placeholder="placeholder"
         :disabled="disabled"
     >
-    <ul v-if="isOpen && filteredItems.length > 0 && selectedItems.length === 0" class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg" :style="{ maxHeight: maxHeight + 'px' }">
+    <ul v-if="isOpen && filteredItems.length > 0 && selectedItems.length === 0" class="max-h-[18.375rem] divide-y divide-slate-200 overflow-y-auto rounded-b-lg border-t border-slate-200 text-sm leading-6" :style="{ maxHeight: maxHeight + 'px' }">
       <li 
         v-for="item in filteredItems" 
         :key="item[itemValue]"
         @click="selectItem(item)"
-        class="px-3 py-2 cursor-pointer hover:bg-gray-100"
+        class="flex items-center justify-between p-4"
       >
           {{ item[itemText] }}
       </li>
